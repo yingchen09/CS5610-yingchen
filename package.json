@@ -1,0 +1,25 @@
+{
+  "name": "yingchen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yingchen09/CS5610-yingchen.git"
+  },
+  "keywords": [
+    "cs5610-yingchen"
+  ],
+  "author": "Ying Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yingchen09/CS5610-yingchen/issues"
+  },
+  "homepage": "https://github.com/yingchen09/CS5610-yingchen#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}

@@ -1,0 +1,121 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+input.form-control {
+    margin-bottom: 5px;
+}
+
+.cl-form-bottom-padding{
+    margin-bottom: 2em;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.cl-container-padding {
+    padding-top: 5%;
+    padding-bottom: 10%;
+}
+
+.cl-blue-navbar{
+    background-color: #337ab7;
+}
+
+.cl-text-white{
+    color: #fff;
+}
+
+.cl-text-black{
+    color: #000000;
+}
+
+.cl-text-blue{
+    color: #337ab7
+}
+
+.cl-text-bold{
+    font-weight: bold;
+}
+
+.cl-text-large{
+    font-size :36px;
+}
+
+.cl-text-medium{
+    font-size: 24px;
+}
+
+.cl-icon-padding {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.cl-header-padding{
+    padding-left: 5%;
+}
+
+.cl-full-width{
+    width: 100%;
+}
+
+.cl-widget-list-item{
+    padding-bottom: 20px;
+}
+
+.cl-v-divider{
+    border-right: 1px solid #808080;
+    height: 100%;
+}
+
+.cl-widget-heading{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.cl-widget-paragraph{
+    margin-top: 0px;
+    margin-bottom: 50px;
+}
+
+.cl-height{
+    height: 100%;
+    min-height: 100%;
+}
+
+.borderless .list-group-item {
+    border: none;
+}
+
+.margin-left {
+    margin-left: 0px;
+}
+
+.margin-left-20 {
+    margin-left: 20px;
+}
+
+.margin-right {
+    margin-right: 30px;
+}
+
+.col4-style-blue {
+    overflow-y: scroll;
+    top: 0px;
+    bottom: 0px;
+    position: absolute;
+    left: 0px;
+    margin-top: 50px;
+    padding-top: 15px;
+    margin-bottom: 50px;
+    border:1px solid #cecece;
+}
+
+.cl-widget-images{
+    display: inline;
+    width: 85%;
+    z-index: 100;
+    position: relative;
+}
