@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Widget Chooser</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left margin-left">
-            <a href="widget-list.view.client.html" class="cl-text-black">
+            <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="cl-text-black">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -24,49 +13,30 @@
 
 <div class="container-fluid">
 
-    <ul class="list-group borderless">
+    <div class="list-group borderless">
+        <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/create/HEADING"
+           class="list-group-item list-group-item-action">
+            Header</a>
+        <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/create/HTML"
+           class="list-group-item list-group-item-action">
+            HTML</a>
+        <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/create/IMAGE"
+           class="list-group-item list-group-item-action">
+            Image</a>
+        <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/create/YOUTUBE"
+           class="list-group-item list-group-item-action">
+            YouTube</a>
+    </div>
 
-        <li class="list-group-item cl-text-blue">
-            <a href="widget-heading.view.client.html">Header</a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            <a href="#">Label</a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            <a href="#">HTML</a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            <a href="#">Text Input</a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            <a href="#">Link</a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            <a href="#">Button</a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            <a href="widget-image.view.client.html">Image</a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            <a href="widget-youtube.view.client.html">YouTube</a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            <a href="#.html">Data Table</a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            <a href="#.html">Repeater</a>
-        </li>
-    </ul>
 </div>
+
 
 <nav class="navbar navbar-fixed-bottom navbar-default">
     <div class="container-fuild">
         <div class="navbar-text pull-right margin-right">
-            <a href="../views/user/profile.html" class="cl-text-blue">
+            <a href="#!/user/{{model.uid}}" class="cl-text-blue">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
     </div>
 </nav>
-</body>
-</html>

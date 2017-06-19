@@ -1,0 +1,15 @@
+<label for="name">Name</label>
+<input type="text" class="form-control" placeholder="Image Name" id="name">
+<label for="text">Text</label>
+<input type="text" class="form-control" placeholder="Image Text" id="text">
+<label for="url">URL</label>
+<input ng-model="model.widget.url" type="text" class="form-control"
+       placeholder="Image URL" id="url">
+<label for="width">Width</label>
+<input ng-model="model.widget.width" type="text" class="form-control"
+       placeholder="Image Width" id="width"
+       required>
+<label class="btn btn-default btn-file">
+    <input type="file" hidden>
+</label>
+<a class="btn btn-primary btn-block" href="../widget-list.view.client.html">Upload Image</a>
