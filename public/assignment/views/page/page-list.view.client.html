@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Page List</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left margin-left">
-            <a href="../website/website-list.view.client.html" class="cl-text-black">
+            <a href="#!/user/{{model.uid}}/website" class="cl-text-black">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
-        <a class="navbar-brand cl-text-bold" href="../widget/widget-list.view.client.html">
+        <a class="navbar-brand cl-text-bold">
             Pages
         </a>
-        <div class="navbar-text pull-right margin-right">
-            <a href="page-new.view.client.html" class="cl-text-black">
+        <div class="navbar-text pull-right cl-icon-padding">
+            <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/new" class="cl-text-black">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -28,50 +17,24 @@
 </nav>
 
 <div class="container-fluid">
-
     <ul class="list-group borderless">
-        <li class="list-group-item cl-text-blue">
-            Blog Post
-            <a href="page-edit.view.client.html">
+        <li ng-repeat="page in model.pages" class="list-group-item cl-list-item-borderless">
+            <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}">
                 <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            Blogs
-            <a href="page-edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            Home
-            <a href="page-edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            About
-            <a href="page-edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </a>
-        </li>
-        <li class="list-group-item cl-text-blue">
-            Contact Us
-            <a href="page-edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
+            <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}/widget">
+                {{page.name}}
             </a>
         </li>
     </ul>
-
 </div>
 
 <nav class="navbar navbar-fixed-bottom navbar-default">
     <div class="container-fuild">
-        <div class="navbar-text pull-right margin-right">
-            <a href="../views/user/profile.html" class="cl-text-blue">
+        <div class="navbar-text pull-right">
+            <a href="#!/user/{{model.uid}}" class="cl-text-blue cl-icon-padding">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
     </div>
 </nav>
-</body>
-</html>

@@ -1,46 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>New Website</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
 <nav class="navbar navbar-fixed-top cl-blue-navbar">
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left cl-text-white margin-left">
-                <a href="website-list.view.client.html" class="cl-text-white">
+                <a href="#!/user/{{model.uid}}/website" class="cl-text-white">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-header">
-                <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+                <a class="cl-text-white navbar-brand cl-text-bold">
                     Websites
                 </a>
             </div>
             <div class="navbar-text pull-right margin-right">
-                <a href="#" class="cl-text-white">
+                <a href="#!/user/{{model.uid}}/website/new" class="cl-text-white">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
         </div>
         <div class="col-sm-8">
             <div class="navbar-text pull-left margin-left">
-                <a href="website-list.view.client.html" class="cl-text-white visible-xs">
+                <a href="#!/user/{{model.uid}}/website" class="cl-text-white visible-xs">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right margin-right">
-                <a href="website-list.view.client.html" class="cl-text-white">
+                <a ng-click="model.newWebsite(model.websiteName, model.websiteDesc)" class="cl-text-white">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
             <div class="navbar-header">
-                <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+                <a class="cl-text-white navbar-brand cl-text-bold">
                     New Website
                 </a>
             </div>
@@ -51,42 +40,32 @@
 <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs col4-style-blue">
         <ul class="list-group borderless">
-            <li class="list-group-item cl-text-blue">
-                Blogging App
-                <a href="#">
+            <li ng-repeat="website in model.websites" class="list-group-item cl-list-item-borderless">
+                <a href="#!/user/{{website.developerId}}/website/{{website._id}}">
                     <span class="glyphicon glyphicon-cog pull-right"></span>
                 </a>
-            </li>
-            <li class="list-group-item cl-text-blue">
-                Address Book App
-                <a href="#">
-                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                </a>
-            </li>
-            <li class="list-group-item cl-text-blue">
-                Script Testing App
-                <a href="#">
-                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                </a>
-            </li>
-            <li class="list-group-item cl-text-blue">
-                Blogger
-                <a href="#">
-                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                <a href="#!/user/{{website.developerId}}/website/{{website._id}}/page">
+                    {{website.name}}
                 </a>
             </li>
         </ul>
     </div>
+
+
     <div class="col-xs-12 col-sm-8 pull-right">
+        <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name">
+                <label for="websiteName">Name</label>
+                <input type="text" class="form-control" id="websiteName" placeholder="Name"
+                       ng-model="model.websiteName"
+                       required>
             </div>
-
             <div class="form-group">
-                <label for="exampleTextarea">Description</label>
-                <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Description"></textarea>
+                <label for="websiteDesc">Description</label>
+                <textarea class="form-control" id="websiteDesc" rows="5" placeholder="Description"
+                          ng-model="model.websiteDesc">
+                </textarea>
             </div>
         </form>
     </div>
@@ -94,10 +73,8 @@
 
 <nav class="navbar navbar-fixed-bottom cl-blue-navbar">
     <div class="container-fuild">
-        <a href="../user/profile.view.client.html" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+        <a href="#!/user/{{model.uid}}" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
             <span class="glyphicon glyphicon-user"></span>
         </a>
     </div>
 </nav>
-</body>
-</html>
