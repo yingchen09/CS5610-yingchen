@@ -10,7 +10,7 @@
             Widget Edit
         </a>
         <div class="navbar-text pull-right cl-icon-padding">
-            <a ng-click="model.updateWidget()" class="cl-text-black">
+            <a ng-click="model.updateWidget(model.widget)" class="cl-text-black">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
@@ -32,7 +32,7 @@
             <div ng-include src="'views/widget/widget-html-edit.view.client.html'"></div>
         </div>
 
-        <a class="margin-top btn btn-danger btn-block" ng-click="model.deleteWidget(model.wgid)">Delete</a>
+        <a class="margin-top btn btn-danger btn-block" ng-click="model.deleteWidget(model.widget)">Delete</a>
     </div>
 </div>
 
