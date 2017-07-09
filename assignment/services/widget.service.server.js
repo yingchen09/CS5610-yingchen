@@ -13,7 +13,6 @@ module.exports = function(app){
         ];
 
 
-
     app.get("/api/page/:pid/widget", findAllWidgetsForPage);
     app.get("/api/widget/:wgid", findWidgetById);
 
@@ -22,6 +21,55 @@ module.exports = function(app){
     app.put("/api/widget/:wgid", updateWidget);
 
     app.delete("/api/widget/:wgid", deleteWidget);
+
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
+
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
+    function uploadImage(req, res) {
+
+        var widgetId      = req.body.widgetId;
+        var width         = req.body.width;
+
+        var myFile        = req.file;
+
+        var userId = req.body.userId;
+        var websiteId = req.body.websiteId;
+        var pageId = req.body.pageId;
+
+        var originalname  = myFile.originalname; // file name on user's computer
+        var filename      = myFile.filename;     // new file name in upload folder
+        var path          = myFile.path;         // full path of uploaded file
+        var destination   = myFile.destination;  // folder where file is saved to
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+
+        widget = getWidgetById(widgetId);
+        widget.url = 'assignment/uploads/'+filename;
+
+        function getWidgetById(widgetId) {
+            if (widgetId === undefined || widgetId === null || widgetId === '') {
+                var newWidget = {
+                    _id: new Date().getTime(),
+                    widgetType: "IMAGE",
+                    pageId: pageId,
+                    width: width
+                };
+                widgets.push(newWidget);
+                return newWidget;
+            }
+            for (w in widgets) {
+                var widget = widgets[w];
+                if (String(widget._id) === String(widgetId)) {
+                    return widget;
+                }
+            }
+            return null;
+        }
+        var callbackUrl  = "/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+        res.redirect(callbackUrl);
+    }
 
     function updateWidget(req, res) {
 
