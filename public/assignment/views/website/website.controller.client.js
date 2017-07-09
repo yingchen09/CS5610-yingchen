@@ -78,7 +78,8 @@
             });
 
         function updateWebsite(newWebsite) {
-            WebsiteService.updateWebsite(vm.wid, newWebsite)
+            WebsiteService
+                .updateWebsite(vm.wid, newWebsite)
                 .then(function () {
                     vm.updated = "Website updated";
                     $timeout(function () {

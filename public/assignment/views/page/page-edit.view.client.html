@@ -9,7 +9,7 @@
             Edit Page
         </a>
         <div class="navbar-text pull-right cl-icon-padding">
-            <a ng-click="model.updatePage()" class="cl-text-black">
+            <a ng-click="model.updatePage(model.page)" class="cl-text-black">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
@@ -27,7 +27,7 @@
            ng-model="model.page.description"
            required>
 
-    <a class="btn btn-danger btn-block" ng-click="model.deletePage(model.pid)">
+    <a class="btn btn-danger btn-block" ng-click="model.deletePage(model.page)">
         Delete
     </a>
 </div>
