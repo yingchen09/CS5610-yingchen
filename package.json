@@ -21,7 +21,10 @@
   },
   "homepage": "https://github.com/yingchen09/CS5610-yingchen#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "q": "^1.5.0",
+    "textangular": "^1.5.16"
   },
   "devDependencies": {}
 }
