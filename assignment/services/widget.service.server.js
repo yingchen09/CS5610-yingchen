@@ -22,6 +22,33 @@ module.exports = function(app){
 
     app.delete("/api/widget/:wgid", deleteWidget);
 
+    app.put("/api/page/:pid/widget", sortWidgets);
+
+    function sortWidgets(req, res) {
+        var pageId = req.params.pid;
+        var pageWidgets = [];
+        for (w in widgets) {
+            var widget = widgets[w];
+            if (parseInt(widget.pageId) === parseInt(pageId)) {
+                pageWidgets.push(widget);
+            }
+        }
+
+        var index1 = req.query.start;
+        var index2 = req.query.end;
+
+        var start = widgets.indexOf(pageWidgets[index1]);
+        var end = widgets.indexOf(pageWidgets[index2]);
+
+        if (index1 && index2) {
+            widgets.splice(end, 0, widgets.splice(start, 1)[0]);
+            res.sendStatus(200);
+            return;
+        }
+        res.status(404).send("Cannot reorder widgets");
+
+    }
+
     var multer = require('multer'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
 
