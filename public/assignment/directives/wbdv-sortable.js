@@ -34,7 +34,6 @@
             });
 
         }
-
         return{
             link: linkFunction,
             callback: '&'

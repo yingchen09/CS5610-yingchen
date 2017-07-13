@@ -134,7 +134,7 @@
 
         function deleteWidget(widget) {
             WidgetService
-                .deleteWidget(vm.wgid)
+                .deleteWidget(widget._id)
                 .then(function () {
                     $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
                 }, function (error) {
@@ -179,7 +179,6 @@
                 url: url
             };
             if (vm.wgid === null || vm.wgid === undefined) {
-                //console.log("go to this way");
                 WidgetService
                     .createWidget(vm.pid, newWidget)
                     .then(function () {
