@@ -98,33 +98,6 @@ module.exports = function(app){
         res.redirect(callbackUrl);
     }
 
-    function updateWidget(req, res) {
-
-        var wgid = req.params.wgid;
-        var widget = req.body;
-        for (w in widgets) {
-            if (String(widgets[w]._id) === String(wgid)) {
-                widgets[w] = widget;
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.Status(404).send("The widget not found");
-    }
-
-    function deleteWidget(req, res) {
-        var wgid = req.params.wgid;
-        for (w in widgets) {
-            if (parseInt(widgets[w]._id) === parseInt(wgid)) {
-                widgets.splice(w, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(404);
-    }
-
-
     function createWidget(req, res) {
         var pid = req.params.pid;
         var widget = req.body;
@@ -167,5 +140,32 @@ module.exports = function(app){
         }
         res.status(404).send("The widget not found");
     }
+
+    function updateWidget(req, res) {
+
+        var wgid = req.params.wgid;
+        var widget = req.body;
+        for (w in widgets) {
+            if (String(widgets[w]._id) === String(wgid)) {
+                widgets[w] = widget;
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.status(404).send("The widget not found");
+    }
+
+    function deleteWidget(req, res) {
+        var wgid = req.params.wgid;
+        for (w in widgets) {
+            if (parseInt(widgets[w]._id) === parseInt(wgid)) {
+                widgets.splice(w, 1);
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.sendStatus(404);
+    }
+
 
 };

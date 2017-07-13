@@ -81,6 +81,8 @@
             WebsiteService
                 .updateWebsite(vm.wid, newWebsite)
                 .then(function () {
+                    $location.url("/user/" + vm.uid + "/website");
+                }, function () {
                     vm.updated = "Website updated";
                     $timeout(function () {
                         vm.updated = null;

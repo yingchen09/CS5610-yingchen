@@ -15,28 +15,12 @@
         };
         return services;
 
-        function getNextId() {
-            function getMaxId(maxId, currentId) {
-                var current = parseInt(currentId._id);
-                if (maxId > current) {
-                    return maxId;
-                } else {
-                    return current + 1;
-                }
-            }
-            return websites.reduce(getMaxId, 0).toString();
-        }
-
         function createWebsite(userId, website) {
-            var newWebsiteId = getNextId();
-            var newWebsite = {
-                _id: newWebsiteId,
-                name: website.name,
-                desc: website.desc,
-                developerId: userId
-            };
-            websites.push(newWebsite);
-            return newWebsiteId;
+            var url = "/api/user/" +userId+ "/website";
+            return $http.post(url, website)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findWebsitesByUser(userId) {

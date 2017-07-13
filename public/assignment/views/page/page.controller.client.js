@@ -68,10 +68,6 @@
         }
         init();
 
-        // function init() {
-        //     vm.page = PageService.findPageById(vm.pid);
-        // }
-        // init();
 
         function updatePage(newPage) {
 

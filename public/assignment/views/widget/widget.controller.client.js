@@ -4,7 +4,10 @@
         .controller("WidgetListController", WidgetListController)
         .controller("NewWidgetController", NewWidgetController)
         .controller("CreateWidgetController", CreateWidgetController)
-        .controller("EditWidgetController", EditWidgetController);
+        .controller("EditWidgetController", EditWidgetController)
+        .controller("FlickrImageSearchController", FlickrImageSearchController);
+
+
 
     function WidgetListController($routeParams, $sce, WidgetService) {
         var vm = this;
@@ -131,7 +134,7 @@
 
         function deleteWidget(widget) {
             WidgetService
-                .deleteWidget(widget._id)
+                .deleteWidget(vm.wgid)
                 .then(function () {
                     $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
                 }, function (error) {
@@ -140,6 +143,55 @@
                         vm.error = null;
                     }, 3000);
                 })
+        }
+    }
+
+    function FlickrImageSearchController(FlickrService, WidgetService, $location, $routeParams) {
+        var vm = this;
+
+        vm.uid = $routeParams.uid;
+        vm.wid = $routeParams.wid;
+        vm.pid = $routeParams.pid;
+        vm.wgid = $routeParams.wgid;
+
+        vm.searchPhotos = searchPhotos;
+        vm.selectPhoto = selectPhoto;
+
+        function searchPhotos(searchText) {
+            FlickrService
+                .searchPhotos(searchText)
+                .then(function(response) {
+
+                    data = response.data.replace("jsonFlickrApi(", "");
+                    data = data.substring(0, data.length - 1);
+                    data = JSON.parse(data);
+                    console.log(data);
+                    vm.photos = data.photos;
+                });
+        }
+
+        function selectPhoto(photo) {
+            var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
+            url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
+
+            var newWidget = {
+                widgetType: "IMAGE",
+                url: url
+            };
+            if (vm.wgid === null || vm.wgid === undefined) {
+                //console.log("go to this way");
+                WidgetService
+                    .createWidget(vm.pid, newWidget)
+                    .then(function () {
+                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                    });
+            } else {
+                WidgetService
+                    .updateWidget(vm.wgid, newWidget)
+                    .then(function () {
+                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                    });
+            }
         }
     }
 })();
