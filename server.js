@@ -7,6 +7,11 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+var passport = require('passport');
+var cookies = require('cookies');
+var sessions = require('sessions');
+var LocalStrategy = require('passport-local').Strategy;
+
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname+'/public/assignment'));
 

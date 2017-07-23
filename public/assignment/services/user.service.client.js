@@ -7,13 +7,7 @@
         .factory('UserService', UserService);
 
     function UserService($http) {
-        // var users = [
-        //     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "alice@gmail.com"},
-        //     {_id: "100", username: "a", password: "a", firstName: "a", lastName: "a", email: "a@gmail.com"},
-        //     {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley", email: "bob@regge.com"},
-        //     {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia", email: "charles@bing.com"},
-        //     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi", email: "jose@neu.com"}
-        // ];
+
         var services = {
             "createUser": createUser,
             "findUserById": findUserById,
@@ -24,17 +18,6 @@
         };
         return services;
 
-        // function getNextId() {
-        //     function getMaxId(maxId, currentId) {
-        //         var current = parseInt(currentId._id);
-        //         if (maxId > current) {
-        //             return maxId;
-        //         } else {
-        //             return current + 1;
-        //         }
-        //     }
-        //     return users.reduce(getMaxId, 0).toString();
-        // }
 
         function createUser(user) {
             var url = "/api/user/";
@@ -42,17 +25,6 @@
                 .then(function (response) {
                     return response.data;
                 });
-            // var newUserId = getNextId();
-            // var newUser = {
-            //     _id: newUserId,
-            //     username: user.username,
-            //     password: user.password,
-            //     firstName: user.firstName,
-            //     lastName: user.lastName,
-            //     email: user.email
-            // };
-            // users.push(newUser);
-
         }
 
         function findUserById(userId) {
