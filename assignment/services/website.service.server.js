@@ -18,13 +18,14 @@ module.exports = function(app, models) {
 
     app.post('/api/user/:uid/website',createWebsite);
 
-    app.delete('/api/website/:wid',deleteWebsite);
+    app.delete('/api/user/:uid/website/:wid',deleteWebsite);
 
     function deleteWebsite(req, res) {
         var wid = req.params.wid;
+        var uid = req.params.uid;
 
         websiteModel
-            .deleteWebsite(wid)
+            .deleteWebsite(uid, wid)
             .then(function (status) {
                 res.send(status);
             });

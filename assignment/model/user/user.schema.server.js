@@ -11,7 +11,7 @@ module.exports = function(mongoose){
         phone : String,
         websites : [{
             type: Schema.Types.ObjectId,
-            ref : 'website'
+            ref : 'websiteModel'
         }],
         dateCreated : {
             type : Date,

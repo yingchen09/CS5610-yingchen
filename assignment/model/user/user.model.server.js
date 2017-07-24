@@ -18,6 +18,7 @@ module.exports = function(mongoose){
     // Function Definition Section
 
     function addWebsiteForUser(userId, websiteId) {
+        //console.log("add website for user");
         return userModel
             .findOne({_id: userId})
             .then(function (user) {
@@ -85,8 +86,11 @@ module.exports = function(mongoose){
             .findById(userId)
             .then(
                 function(user){
-                    user.websites.pull(websiteId);
-                    user.save();
+                    var index = user.websites.indexOf(websiteId);
+                    user.websites.splice(index, 1);
+                    return user.save();
+                    // user.websites.pull(websiteId);
+                    // user.save();
                 },
                 function(error){
                     console.log(error);

@@ -136,7 +136,7 @@ module.exports = function(app, models) {
                     }
                 });
         } else {
-            res.status(404).send("Login name or password cannot be empty");
+            res.status(404).send("Login credentials not found");
         }
     }
 

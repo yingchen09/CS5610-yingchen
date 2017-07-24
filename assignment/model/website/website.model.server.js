@@ -22,10 +22,11 @@ module.exports = function(mongoose, userModel) {
         website._user = userId;
         return websiteModel
             .create(website)
-            .then(function (website) {
-                return userModel
-                    .addWebsiteForUser(userId, website._id);
-            });
+            .then(
+                function (website) {
+                    return userModel
+                        .addWebsiteForUser(userId, website._id)
+                });
     }
 
     function findWebsitesByUser(userId) {
@@ -49,11 +50,15 @@ module.exports = function(mongoose, userModel) {
         });
     }
 
-    function deleteWebsite(websiteId) {
-        var userId = websiteModel.findOne({_id: websiteId})._user;
+    function deleteWebsite(userId, websiteId) {
+        //var userId = websiteModel.findOne({_id: websiteId})._user;
 
         return websiteModel
             .remove({_id: websiteId})
+            .then(function (status) {
+                return userModel
+                    .removeWebsiteFromUser(userId, websiteId);
+            });
     }
 
 };
