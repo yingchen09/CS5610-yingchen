@@ -8,11 +8,34 @@ module.exports = function(mongoose, userModel) {
         'findAllWebsites' : findAllWebsites,
         'findWebsiteById': findWebsiteById,
         'updateWebsite': updateWebsite,
-        //'removePageFromWebsite': removePageFromWebsite,
-        //'addPageToWebsite' : addPageToWebsite,
+        'removePageFromWebsite': removePageFromWebsite,
+        'addPageToWebsite' : addPageToWebsite,
         'deleteWebsite': deleteWebsite
     };
     return api;
+
+    function removePageFromWebsite(websiteId, pageId) {
+        websiteModel
+            .findById({_id: websiteId})
+            .then(function(website) {
+                var index = website.pages.indexOf(websiteId);
+                website.pages.splice(index, 1);
+                return website.save();
+                },
+                function(error){
+                    console.log(error);
+                }
+            );
+    }
+
+    function addPageToWebsite(websiteId, pageId) {
+        return websiteModel
+            .findById({_id: websiteId})
+            .then(function (website) {
+                website.pages.push(pageId);
+                return website.save();
+            });
+    }
 
     function findAllWebsites() {
         return websiteModel.find();
