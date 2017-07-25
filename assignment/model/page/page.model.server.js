@@ -14,6 +14,26 @@ module.exports = function(mongoose, websiteModel){
 
     return api;
 
+    function removeWidgetFromPage(pageId, widgetId) {
+        pageModel
+            .findById(pageId)
+            .then(function (page) {
+                page.widgets.pull(widgetId);
+                page.save();
+            }, function (error) {
+                console.log(error);
+            });
+    }
+
+    function addWidgetToPage(pageId, widgetId) {
+        return pageModel
+            .findById({_id: pageId})
+            .then(function (page) {
+                page.widgets.push(widgetId);
+                return page.save();
+            });
+    }
+
     function createPage(websiteId, page) {
         page._website = websiteId;
         return pageModel.create(page)
@@ -55,26 +75,5 @@ module.exports = function(mongoose, websiteModel){
             });
     }
 
-    function removeWidgetFromPage(pageId, widgetId) {
-        pageModel
-            .findById(pageId)
-            .then(function (page) {
-                    page.widgets.pull(widgetId);
-                    page.save();
-                },
-                function (error) {
-                    console.log(error);
-                }
-            );
-    }
-
-    function addWidgetToPage(pageId, widgetId) {
-        return pageModel
-            .findById({_id: pageId})
-            .then(function (page) {
-                page.widgets.push(widgetId);
-                return page.save();
-            });
-    }
 
 };

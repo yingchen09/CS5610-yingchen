@@ -1,5 +1,5 @@
 module.exports = function(mongoose){
-    //var widgetSchema = require('../widget/widget.schema.server.js')(mongoose);
+    var widgetSchema = require('../widget/widget.schema.server.js')(mongoose);
 
     var Schema = mongoose.Schema;
 

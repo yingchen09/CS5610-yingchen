@@ -134,7 +134,7 @@
 
         function deleteWidget(widget) {
             WidgetService
-                .deleteWidget(widget._id)
+                .deleteWidget(vm.pid, widget._id)
                 .then(function () {
                     $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
                 }, function (error) {
