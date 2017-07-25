@@ -19,14 +19,7 @@ module.exports = function(mongoose, pageModel) {
             .findPageById(pageId)
             .then(function (page) {
                     if (start && end) {
-                        // if (end >= page.widgets.length) {
-                        //     var k = end - page.widgets.length;
-                        //     while ((k--) + 1) {
-                        //         page.widgets.push(undefined);
-                        //     }
-                        // }
                         page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0]);
-
                         return page.save();
                     }
                 });
