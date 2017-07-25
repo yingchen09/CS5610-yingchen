@@ -7,35 +7,30 @@ module.exports = function(mongoose, pageModel) {
         'findAllWidgetsForPage': findAllWidgetsForPage,
         'findWidgetById': findWidgetById,
         'updateWidget': updateWidget,
-        'deleteWidget': deleteWidget
-        //'reorderWidget': reorderWidget
+        'deleteWidget': deleteWidget,
+        'sortWidget': sortWidget
     };
 
     return api;
 
-    // function reorderWidget(pageId, start, end) {
-    //
-    //     return pageModel
-    //         .findPageById(pageId)
-    //         .then(
-    //             function (page) {
-    //
-    //                 if (start && end) {
-    //                     // console.log("come into if condition");
-    //                     if (end >= page.widgets.length) {
-    //                         var k = end - page.widgets.length;
-    //                         while ((k--) + 1) {
-    //                             page.widgets.push(undefined);
-    //                         }
-    //                     }
-    //                     page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0]);
-    //
-    //                     // console.log(page.widgets);
-    //                     return page.save();
-    //                 }
-    //             }
-    //         )
-    // }
+    function sortWidget(pageId, start, end) {
+
+        return pageModel
+            .findPageById(pageId)
+            .then(function (page) {
+                    if (start && end) {
+                        // if (end >= page.widgets.length) {
+                        //     var k = end - page.widgets.length;
+                        //     while ((k--) + 1) {
+                        //         page.widgets.push(undefined);
+                        //     }
+                        // }
+                        page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0]);
+
+                        return page.save();
+                    }
+                });
+    }
 
     function deleteWidget(pageId, widgetId) {
         //var pageId = widgetModel.findById(widgetId)._page;

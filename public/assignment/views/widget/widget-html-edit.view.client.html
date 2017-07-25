@@ -1,4 +1,11 @@
 <label for="text">Text</label>
-<textarea ng-model="model.widget.text" type="text" class="form-control"
-          placeholder="<p>content</p>" id="text" rows="5">
-</textarea>
+<div ng-model="model.widget.text"
+     text-angular
+     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+</div>
+
+<!--<textarea ng-model="model.widget.text" type="text" class="form-control"-->
+          <!--placeholder="<p>content</p>" id="text" rows="5">-->
+<!--</textarea>-->
