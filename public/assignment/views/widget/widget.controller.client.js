@@ -73,9 +73,9 @@
                     return;
                 }
             }
-            if (vm.wtype === "HTML") {
+            if (vm.wtype === "HTML" || vm.wtype === "TEXT") {
                 if (text === undefined || text === null) {
-                    vm.error = "HTML text cannot be empty";
+                    vm.error = "Content cannot be empty";
                     $timeout(function () {
                         vm.error = null;
                     }, 3000);
