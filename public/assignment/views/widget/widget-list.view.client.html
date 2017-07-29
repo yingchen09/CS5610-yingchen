@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left margin-left">
-            <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page" class="cl-text-black">
+            <a href="#!/website/{{model.wid}}/page" class="cl-text-black">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -9,7 +9,7 @@
             Widgets
         </a>
         <div class="navbar-text pull-right cl-icon-padding">
-            <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="cl-text-black">
+            <a href="#!/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="cl-text-black">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -19,7 +19,7 @@
 <div wbdv-sortable="model.pid" class="container cl-container-padding">
     <div ng-repeat="widget in model.widgets" class="margin-bottom">
         <div class="widget-toolbar">
-            <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
+            <a href="#!/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-menu-hamburger"></span>
@@ -53,7 +53,7 @@
     <div class="container-fluid row">
         <div class="pull-right navbar-text">
 
-            <a href="#!/user/{{model.uid}}" class="tv-icon-padding">
+            <a href="#!/profile" class="tv-icon-padding">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
 

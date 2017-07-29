@@ -7,6 +7,9 @@ module.exports = function(mongoose){
         password : {type : String, required : true},
         firstName : String,
         lastName : String,
+        roles : [{type : String,
+            default: 'USER',
+            enum: ['USER', 'ADMIN', 'FACULTY', 'STUDENT']}],
         email : String,
         phone : String,
         websites : [{

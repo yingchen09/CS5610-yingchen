@@ -7,7 +7,7 @@
         <a class="navbar-brand cl-text-white cl-text-bold">
             Websites
         </a>
-        <a href="#!/user/{{model.uid}}/website/new"
+        <a href="#!/website/new"
            class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
@@ -20,7 +20,7 @@
             <a href="#!/website/{{website._id}}">
                 <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
-            <a href="#!/user/{{website._user._id}}/website/{{website._id}}/page">
+            <a href="#!/website/{{website._id}}/page">
                 {{website.name}}
             </a>
         </li>

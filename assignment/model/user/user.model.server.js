@@ -34,6 +34,7 @@ module.exports = function(mongoose){
 
 
     function createUser(user){
+        user.roles = ['USER'];
         var newUser = {
             username : user.username,
             password : user.password,

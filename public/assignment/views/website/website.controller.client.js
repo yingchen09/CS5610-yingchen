@@ -18,9 +18,9 @@
         }
     }
 
-    function NewWebsiteController($routeParams, $timeout, WebsiteService, $location) {
+    function NewWebsiteController($routeParams, $timeout, WebsiteService, $location, currentUser) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        vm.uid = currentUser._id;//$routeParams.uid;
         vm.newWebsite = newWebsite;
 
         function init() {
@@ -50,7 +50,7 @@
             return WebsiteService
                 .createWebsite(vm.uid, website)
                 .then(function () {
-                    $location.url("/user/" + vm.uid + "/website");
+                    $location.url("/website");
                 });
         }
     }

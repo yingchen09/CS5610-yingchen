@@ -9,9 +9,9 @@
 
 
 
-    function WidgetListController($routeParams, $sce, WidgetService) {
+    function WidgetListController($routeParams, $sce, WidgetService, currentUser) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        vm.uid = currentUser._id;//$routeParams.uid;
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
 
@@ -38,16 +38,16 @@
         }
     }
 
-    function NewWidgetController($routeParams) {
+    function NewWidgetController($routeParams, currentUser) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        vm.uid = currentUser._id;//$routeParams.uid;
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
     }
 
-    function CreateWidgetController($routeParams, $location, $timeout, WidgetService) {
+    function CreateWidgetController($routeParams, $location, $timeout, WidgetService, currentUser) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        vm.uid = currentUser._id;//$routeParams.uid;
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
         vm.wtype = $routeParams.wtype;
@@ -93,14 +93,14 @@
             WidgetService
                 .createWidget(vm.pid, widget)
                 .then(function () {
-                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                    $location.url("/website/" + vm.wid + "/page/" + vm.pid + "/widget");
                 });
         }
     }
 
-    function EditWidgetController($routeParams, $location, WidgetService, $timeout) {
+    function EditWidgetController($routeParams, $location, WidgetService, $timeout, currentUser) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        vm.uid = currentUser._id;//$routeParams.uid;
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
@@ -123,7 +123,7 @@
             WidgetService
                 .updateWidget(vm.wgid, newWidget)
                 .then(function () {
-                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                    $location.url("/website/" + vm.wid + "/page/" + vm.pid + "/widget");
                 }, function (error) {
                     vm.error = "The widget not found";
                     $timeout(function () {
@@ -136,7 +136,7 @@
             WidgetService
                 .deleteWidget(vm.pid, widget._id)
                 .then(function () {
-                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                    $location.url("/website/" + vm.wid + "/page/" + vm.pid + "/widget");
                 }, function (error) {
                     vm.error = "The widget not found";
                     $timeout(function () {
@@ -146,10 +146,10 @@
         }
     }
 
-    function FlickrImageSearchController(FlickrService, WidgetService, $location, $routeParams) {
+    function FlickrImageSearchController(FlickrService, WidgetService, $location, $routeParams, currentUser) {
         var vm = this;
 
-        vm.uid = $routeParams.uid;
+        vm.uid = currentUser._id;//$routeParams.uid;
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
@@ -182,13 +182,13 @@
                 WidgetService
                     .createWidget(vm.pid, newWidget)
                     .then(function () {
-                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                        $location.url("/website/" + vm.wid + "/page/" + vm.pid + "/widget");
                     });
             } else {
                 WidgetService
                     .updateWidget(vm.wgid, newWidget)
                     .then(function () {
-                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                        $location.url("/website/" + vm.wid + "/page/" + vm.pid + "/widget");
                     });
             }
         }
