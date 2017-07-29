@@ -27,20 +27,26 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:uid/website', {
+            .when('/website', {
                 templateUrl : "views/website/website-list.view.client.html",
                 controller: "WebsiteListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/user/:uid/website/new', {
                 templateUrl : "views/website/website-new.view.client.html",
                 controller: "NewWebsiteController",
                 controllerAs: "model"
             })
-            .when('/user/:uid/website/:wid', {
+            .when('/website/:wid', {
                 templateUrl : "views/website/website-edit.view.client.html",
                 controller: "EditWebsiteController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/user/:uid/website/:wid/page', {
                 templateUrl : "views/page/page-list.view.client.html",
@@ -92,8 +98,18 @@
             });
     }
 
-    function checkLoggedIn(UserService) {
-        return UserService
+    function checkLoggedIn(UserService, $q, $location) {
+        var deferred = $q.defer();
+        UserService
             .loggedin()
+            .then(function(user) {
+                if(user === '0') {
+                    deferred.reject();
+                    $location.url('/login');
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
     }
 })();

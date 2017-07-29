@@ -26,6 +26,7 @@ module.exports = function(app, models) {
     //handle passport
     app.post('/api/login', passport.authenticate('local'), login);
     app.get('/api/loggedin', loggedin);
+    app.post('/api/logout', logout);
 
 
     passport.use(new LocalStrategy(localStrategy));
@@ -74,6 +75,11 @@ module.exports = function(app, models) {
         } else {
             res.send('0');
         }
+    }
+
+    function logout(req, res) {
+        req.logout();
+        res.sendStatus(200);
     }
 
     function deleteUser(req, res) {

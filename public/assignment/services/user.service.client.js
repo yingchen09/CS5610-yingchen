@@ -14,6 +14,7 @@
             "findUserByUsername": findUserByUsername,
             "findUserByCredentials": findUserByCredentials,
             "login": login,
+            "logout": logout,
             "loggedin": loggedin,
             "updateUser": updateUser,
             "deleteUser": deleteUser
@@ -35,6 +36,14 @@
                 password: password
             }
             return $http.post(url, credentials)
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+
+        function logout() {
+            var url = "/api/logout";
+            return $http.post(url)
                 .then(function(response) {
                     return response.data;
                 });

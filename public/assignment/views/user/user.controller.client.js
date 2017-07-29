@@ -81,6 +81,15 @@
             vm.error = "User not found";
         }
 
+        vm.logout = logout;
+        function logout() {
+            UserService
+                .logout()
+                .then(function() {
+                    $location.url('/login');
+                })
+        }
+
         vm.updateUser = updateUser;
         function updateUser(user) {
             UserService

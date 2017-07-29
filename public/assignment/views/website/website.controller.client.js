@@ -5,9 +5,11 @@
         .controller("NewWebsiteController", NewWebsiteController)
         .controller("EditWebsiteController", EditWebsiteController);
 
-    function WebsiteListController($routeParams, WebsiteService) {
+    function WebsiteListController($routeParams, WebsiteService, currentUser) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        //vm.uid = $routeParams.uid;
+        vm.uid = currentUser._id;
+
         WebsiteService
             .findWebsitesByUser(vm.uid)
             .then(renderWebsites);
@@ -53,9 +55,9 @@
         }
     }
 
-    function EditWebsiteController($routeParams, $location, $timeout, WebsiteService) {
+    function EditWebsiteController($routeParams, $location, $timeout, WebsiteService, currentUser) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        vm.uid = currentUser._id;//$routeParams.uid;
         vm.wid = $routeParams.wid;
 
         vm.updateWebsite = updateWebsite;
@@ -81,7 +83,7 @@
             WebsiteService
                 .updateWebsite(vm.wid, newWebsite)
                 .then(function () {
-                    $location.url("/user/" + vm.uid + "/website");
+                    $location.url("/website");
                 }, function () {
                     vm.updated = "Website updated";
                     $timeout(function () {
@@ -94,7 +96,7 @@
             WebsiteService
                 .deleteWebsite(vm.uid, website._id)
                 .then(function () {
-                    $location.url("/user/" + vm.uid + "/website");
+                    $location.url("/website");
                 }, function (error) {
                     vm.error = "Unable to remove this website";
                     $timeout(function () {
