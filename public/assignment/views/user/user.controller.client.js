@@ -14,12 +14,12 @@
 
         function login(username, password) {
             UserService
-                .findUserByCredentials(username, password)
+                .login(username, password)
                 .then(function (user) {
                     if (user === null) {
-                        vm.error = "Username does not exist.";
+                        vm.error = "Username not found";
                     } else {
-                        $location.url("/user/" + user._id);
+                        $location.url("/profile");
                     }
                 });
         }
@@ -31,11 +31,11 @@
 
         function register(username, password, vpassword) {
             if (username === undefined || username === null || username === "" || password === undefined || password === "") {
-                vm.error = "Username and Passwords cannot be empty.";
+                vm.error = "Username and Passwords cannot be empty";
                 return;
             }
             if (password !== vpassword) {
-                vm.error = "Password does not match.";
+                vm.error = "Password does not match";
                 return;
             }
             UserService
@@ -60,11 +60,18 @@
         }
     }
 
-    function ProfileController($location, $routeParams, $timeout, UserService) {
+    function ProfileController($location, $routeParams, $timeout, UserService, currentUser) {
         var vm = this;
-        vm.uid = $routeParams.uid;
-        UserService.findUserById(vm.uid)
-            .then(renderUser, userError);
+        //vm.uid = $routeParams.uid;
+        vm.uid = currentUser._id;
+
+        // UserService.findUserById(vm.uid)
+        //     .then(renderUser, userError);
+
+        function init() {
+            renderUser(currentUser);
+        }
+        init();
 
         function renderUser(user) {
             vm.user = user;

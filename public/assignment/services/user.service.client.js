@@ -13,11 +13,32 @@
             "findUserById": findUserById,
             "findUserByUsername": findUserByUsername,
             "findUserByCredentials": findUserByCredentials,
+            "login": login,
+            "loggedin": loggedin,
             "updateUser": updateUser,
             "deleteUser": deleteUser
         };
         return services;
 
+        function loggedin() {
+            var url = "/api/loggedin";
+            return $http.get(url)
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+
+        function login(username, password) {
+            var url = "/api/login";
+            var credentials = {
+                username: username,
+                password: password
+            }
+            return $http.post(url, credentials)
+                .then(function(response) {
+                    return response.data;
+                });
+        }
 
         function createUser(user) {
             var url = "/api/user/";

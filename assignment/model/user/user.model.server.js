@@ -7,6 +7,7 @@ module.exports = function(mongoose){
         'findUserById' : findUserById,
         'findUserByUsername' : findUserByUsername,
         'findUserByCredentials' : findUserByCredentials,
+        //'findUserByGoogleId': findUserByGoogleId,
         'updateUser' : updateUser,
         'removeWebsiteFromUser' : removeWebsiteFromUser,
         'addWebsiteForUser' : addWebsiteForUser,
@@ -16,6 +17,10 @@ module.exports = function(mongoose){
     return api;
 
     // Function Definition Section
+
+    // function findUserByGoogleId() {
+    //
+    // }
 
     function addWebsiteForUser(userId, websiteId) {
         //console.log("add website for user");

@@ -1,3 +1,6 @@
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 module.exports = function(app, models) {
     var userModel = models.userModel;
 
@@ -19,6 +22,59 @@ module.exports = function(app, models) {
     app.put('/api/user/:uid', updateUser);
 
     app.delete('/api/user/:uid', deleteUser);
+
+    //handle passport
+    app.post('/api/login', passport.authenticate('local'), login);
+    app.get('/api/loggedin', loggedin);
+
+
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    if (!user) {
+                        return done(null, false);
+                    }
+                    return done(null, user);
+                },
+                function(err) {
+                    if (err) { return done(err, false); }
+                }
+            );
+    }
+
+    function login(req, res) {
+        res.json(req.user);
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function loggedin(req, res) {
+        if(req.isAuthenticated()) {
+            res.json(req.user);
+        } else {
+            res.send('0');
+        }
+    }
 
     function deleteUser(req, res) {
         var uid = req.params.uid;

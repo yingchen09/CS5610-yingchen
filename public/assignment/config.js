@@ -19,10 +19,13 @@
                 controller: "LoginController",
                 controllerAs: "model"
             })
-            .when('/user/:uid', {
+            .when('/profile', {
                 templateUrl : "views/user/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/user/:uid/website', {
                 templateUrl : "views/website/website-list.view.client.html",
@@ -87,5 +90,10 @@
             .otherwise({
                 redirectTo : "/"
             });
+    }
+
+    function checkLoggedIn(UserService) {
+        return UserService
+            .loggedin()
     }
 })();

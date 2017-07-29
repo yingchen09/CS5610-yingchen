@@ -11,6 +11,18 @@ var passport = require('passport');
 var cookies = require('cookies');
 var sessions = require('sessions');
 var LocalStrategy = require('passport-local').Strategy;
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+
+app.use(cookieParser());
+app.use(session({
+    secret: process.env.SESSION_SECRET || "This is a secret",
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname+'/public/assignment'));
