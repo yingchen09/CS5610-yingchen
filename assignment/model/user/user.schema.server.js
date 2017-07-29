@@ -10,6 +10,10 @@ module.exports = function(mongoose){
         roles : [{type : String,
             default: 'USER',
             enum: ['USER', 'ADMIN', 'FACULTY', 'STUDENT']}],
+        google: {
+            id:    String,
+            token: String
+        },
         email : String,
         phone : String,
         websites : [{
