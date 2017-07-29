@@ -45,17 +45,14 @@
                 }, function () {
                         var user = {
                             username: username,
-                            password: password,
-                            // firstName: "",
-                            // lastName: "",
-                            // email: ""
+                            password: password
                         };
                         return UserService
-                            .createUser(user);
+                            .register(user);
                     }
                 )
                 .then(function (user) {
-                    $location.url("/user/" + user._id);
+                    $location.url("/profile");
                 });
         }
     }

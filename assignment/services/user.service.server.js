@@ -27,6 +27,7 @@ module.exports = function(app, models) {
     app.post('/api/login', passport.authenticate('local'), login);
     app.get('/api/loggedin', loggedin);
     app.post('/api/logout', logout);
+    app.post('/api/register', register);
 
 
     passport.use(new LocalStrategy(localStrategy));
@@ -47,6 +48,17 @@ module.exports = function(app, models) {
                     if (err) { return done(err, false); }
                 }
             );
+    }
+
+    function register(req, res) {
+        var userObj = req.body;
+        userModel
+            .createUser(userObj)
+            .then(function(user) {
+                req.login(user, function(status) {
+                        res.send(status);
+                    });
+            });
     }
 
     function login(req, res) {

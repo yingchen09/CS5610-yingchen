@@ -16,10 +16,19 @@
             "login": login,
             "logout": logout,
             "loggedin": loggedin,
+            "register": register,
             "updateUser": updateUser,
             "deleteUser": deleteUser
         };
         return services;
+
+        function register(userObj) {
+            var url = "/api/register";
+            return $http.post(url, userObj)
+                .then(function(response) {
+                    return response.data;
+                });
+        }
 
         function loggedin() {
             var url = "/api/loggedin";
