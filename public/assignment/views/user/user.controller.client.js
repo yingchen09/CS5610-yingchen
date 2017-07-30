@@ -16,11 +16,10 @@
             UserService
                 .login(username, password)
                 .then(function (user) {
-                    if (user === null) {
-                        vm.error = "Username not found";
-                    } else {
                         $location.url("/profile");
-                    }
+                    },
+                    function (error) {
+                        vm.error = "username or password may be wrong";
                 });
         }
     }
