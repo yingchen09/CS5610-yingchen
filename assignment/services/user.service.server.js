@@ -35,14 +35,14 @@ module.exports = function(app, models) {
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: '#!/profile',
-            failureRedirect: '#!/login'
+            successRedirect: '/#!/profile',
+            failureRedirect: '/#!/login'
         }));
 
     var googleConfig = {
-        clientID     : process.env.GOOGLE_CLIENT_ID,
-        clientSecret : process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL  : process.env.GOOGLE_CALLBACK_URL
+        clientID     : process.env.GOOGLE_CLIENT_ID || '897608991727-4lsu7mb9cp63shla29kevc77f80n6rvm.apps.googleusercontent.com',
+        clientSecret : process.env.GOOGLE_CLIENT_SECRET || 'fAi_pZ1cdN4UrYl03kLUcXqj',
+        callbackURL  : process.env.GOOGLE_CALLBACK_URL || 'http://localhost:5000/auth/google/callback'
     };
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
@@ -59,6 +59,7 @@ module.exports = function(app, models) {
                         var emailParts = email.split("@");
                         var newGoogleUser = {
                             username:  emailParts[0],
+                            password: '0',
                             firstName: profile.name.givenName,
                             lastName:  profile.name.familyName,
                             email:     email,
